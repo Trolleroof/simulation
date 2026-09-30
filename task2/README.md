@@ -10,6 +10,7 @@ By the end, you should be able to:
 
 ## Prerequisite
 - Complete Task 1 first so `assets/descriptions/DropCubeInBinEnv.xml` includes the Panda arm, cube, bin, and a `"home"` keyframe.
+- Task 2 also needs PyTorch and MPlib. Install them with `pip install torch mplib` in Linux or Colab; MPlib's prebuilt packages do not support macOS.
 
 ## Why learners get stuck
 Most difficulty comes from three places:
