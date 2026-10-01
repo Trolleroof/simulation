@@ -1,0 +1,136 @@
+{
+  "checkpoint": "5324800_lift_then_release",
+  "environment": "fixed training reset, grasped lift >.025m before open-gripper release, normalized observations",
+  "max_steps": 1000,
+  "episodes": [
+    {
+      "seed": 80,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01281040906906128,
+      "grasp_steps": 7,
+      "first_release_step": -1
+    },
+    {
+      "seed": 81,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02704334259033203,
+      "grasp_steps": 31,
+      "first_release_step": -1
+    },
+    {
+      "seed": 82,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.011811614036560059,
+      "grasp_steps": 40,
+      "first_release_step": -1
+    },
+    {
+      "seed": 83,
+      "released_placement": false,
+      "picked_at_least_5cm": true,
+      "max_cube_rise_m": 0.11297529935836792,
+      "grasp_steps": 17,
+      "first_release_step": -1
+    },
+    {
+      "seed": 84,
+      "released_placement": true,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.07291078567504883,
+      "grasp_steps": 70,
+      "first_release_step": 344
+    },
+    {
+      "seed": 85,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.012866020202636719,
+      "grasp_steps": 21,
+      "first_release_step": -1
+    },
+    {
+      "seed": 86,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.018003225326538086,
+      "grasp_steps": 56,
+      "first_release_step": -1
+    },
+    {
+      "seed": 87,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.014018893241882324,
+      "grasp_steps": 0,
+      "first_release_step": -1
+    },
+    {
+      "seed": 88,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.015090346336364746,
+      "grasp_steps": 29,
+      "first_release_step": -1
+    },
+    {
+      "seed": 89,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.06552726030349731,
+      "grasp_steps": 27,
+      "first_release_step": -1
+    },
+    {
+      "seed": 90,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02144700288772583,
+      "grasp_steps": 21,
+      "first_release_step": -1
+    },
+    {
+      "seed": 91,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.016013503074645996,
+      "grasp_steps": 16,
+      "first_release_step": -1
+    },
+    {
+      "seed": 92,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01518779993057251,
+      "grasp_steps": 4,
+      "first_release_step": -1
+    },
+    {
+      "seed": 93,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020271897315979004,
+      "grasp_steps": 32,
+      "first_release_step": -1
+    },
+    {
+      "seed": 94,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01076054573059082,
+      "grasp_steps": 23,
+      "first_release_step": -1
+    },
+    {
+      "seed": 95,
+      "released_placement": false,
+      "picked_at_least_5cm": true,
+      "max_cube_rise_m": 0.05943948030471802,
+      "grasp_steps": 43,
+      "first_release_step": -1
+    }
+  ],
+  "elapsed_seconds": 87.65862798690796
+}

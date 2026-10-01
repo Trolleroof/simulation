@@ -1,4 +1,4 @@
-"""From repo root: python task3/resume_training.py CHECKPOINT [--check]."""
+"""From repo root: python task3/resume_training.py CHECKPOINT [--check | --cpu]."""
 import json
 import os
 import sys
@@ -29,6 +29,13 @@ normalizer = resume_params[0].replace(
 resume_params = (normalizer, resume_params[1])
 config.ppo_agent.num_timesteps = 3_000_000
 config.ppo_agent.num_evals = 9  # 8 batches: 3,276,800 additional transitions.
+cpu = '--cpu' in sys.argv[2:]
+if cpu:
+    config.ppo_agent.num_timesteps = 3_276_800
+    config.ppo_agent.num_envs = 32
+    config.ppo_agent.batch_size = 64
+    config.ppo_agent.unroll_length = 25
+    config.ppo_agent.num_minibatches = 4
 env = PickAndPlace(XML_PATH, config)
 eval_env = PickAndPlace(XML_PATH, config)
 sample = jax.jit(env.reset)(jax.random.PRNGKey(config.seed))
@@ -42,13 +49,20 @@ assert float(jp.max(jp.abs(normalized['state'][37:40]))) < 2
 print('RESUME CHECK PASSED: randomized reset, finite normalized inputs/actions, bin std >= .01', flush=True)
 if '--check' in sys.argv[2:]:
     raise SystemExit(0)
-if not any(device.platform == 'gpu' for device in jax.devices()):
-    raise SystemExit('GPU required for continuation; checkpoint remains saved.')
+if not cpu and not any(device.platform == 'gpu' for device in jax.devices()):
+    raise SystemExit('GPU unavailable; use --cpu for the measured local fallback.')
 
 training = ''.join(notebook['cells'][13]['source']).replace('task3_corrected', 'task3_resumed')
+training = training.replace('candidate_params = None', 'candidate_params = resume_params')
 training = training.replace(
     'Starting corrected-controls PPO: 10,000,000 requested transitions, 26 evals, 10,240,000 batch-rounded transitions',
     'Resuming PPO: randomized reset, strict release, 1000 controls, 3,276,800 additional transitions')
 training = training.replace('ppo.train(environment=env,',
                             'ppo.train(restore_params=resume_params, restore_value_fn=False, environment=env,')
+training = training.replace('    candidate_params = policy_params',
+                            "    candidate_params = policy_params\n    model.save_params('checkpoints/task3_resumed_latest', (policy_params[0], policy_params[1]))")
+if cpu:
+    training = training.replace('task3_resumed', 'task3_resumed_cpu')
+    # Small periodic evaluations keep CPU training moving; final verification uses 128 episodes.
+    training = training.replace('restore_params=resume_params,', 'num_eval_envs=16, restore_params=resume_params,')
 exec(training)

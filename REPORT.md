@@ -63,10 +63,10 @@ Several errors affected the early policy:
 | Grasp | 0.5 | Both fingers contacting the cube within 1 mm |
 | Lift | up to 5 | Height gained while grasped |
 | Transport | up to 2 | Moving toward the bin while grasped |
-| Placement | 500 | Terminal placement bonus |
+| Placement | 5,000 | Terminal bonus after a grasped lift and released placement |
 | Action cost | 0.0001 × mean squared action | Small regularizer |
 
-PPO applies an overall reward scaling of 0.1. At discount 0.97, the immediate 500-point placement bonus exceeds the infinite discounted bound of 253.33 for maximum continuing reward. This comparison does not guarantee learning: a delayed terminal reward is discounted, and sparse pickup/placement events still require exploration.
+The interrupted Colab stage used placement 500, discount 0.97, and reward scaling 0.1. At that discount, a bonus delayed by 344 controls contributes only about 0.014 points before scaling. The continuation uses placement 5,000, discount 0.995, and scaling 0.01. The 5,000-point terminal bonus exceeds the infinite discounted continuing-reward bound of 1,520; scaling keeps the immediate terminal value at 50. These changes make delayed completion more visible to PPO but do not guarantee learning.
 
 ### Measured results
 
@@ -80,7 +80,7 @@ I initially omitted observation normalization in a local replay. That produced a
 
 ### Reset randomization and stronger validation
 
-The saved notebook now varies arm joints by up to 0.02 radians and cube/bin XY by up to 0.01 m per seeded reset. The bin is a mocap body, preserving its randomized pose through MJX stepping without changing policy observation dimensions. The saved success predicate requires the slow cube to be near the bin bottom, neither finger contacting it, and both fingers open beyond 0.03 m. This rejects holding it above the rim or against one finger.
+The saved notebook now varies arm joints by up to 0.02 radians and cube/bin XY by up to 0.01 m per seeded reset. The bin is a mocap body, preserving its randomized pose through MJX stepping without changing policy observation dimensions. The saved success predicate requires the slow cube to be near the bin bottom, neither finger contacting it, and both fingers open beyond 0.03 m. The step function also requires a preceding bilateral grasp with cube rise greater than 0.025 m in the same episode. This rejects holding it above the rim, against one finger, or knocking it into the bin without a meaningful grasped lift.
 
 `python task3/check_environment.py` passed checks for seeded reproducibility, distinct arm/cube/bin positions, finite stepping, bin pose persistence, acceptance of released placement, and rejection of bilateral contact, one-finger contact, closed fingers, elevated, moving, and outside cubes.
 
@@ -104,11 +104,17 @@ The strict evaluation of the 5,324,800-transition checkpoint found 1/128 release
 
 A matched 128-episode comparison using a randomly initialized Gaussian policy, reset seeds 0–127, the same fixed scene, 1,000-control limit, and strict release check produced 0/128 placements. The trained checkpoint's observed placement rate is 0.78125%, versus 0% for that random policy. One successful event does not establish a reliable or statistically robust improvement.
 
-### Runtime interruption and prepared continuation
+I subsequently replayed seeds 80–95 with the new lift-before-release gate. Seed 84 still passed at control 344. Its q trajectory is bit-for-bit identical to the previous trace, and MJX's bilateral contact trace confirms grasped cube rise of 0.0394 m before release. In a separate 32-episode randomized-reset check of the 6,963,200 checkpoint with the bin normalization floor, one cube reached the bin but rose only 0.0072 m while grasped. That event does not meet the new pickup requirement and is not reported as a successful pick-and-place.
+
+### Episode lifecycle correction
+
+With 1,024 environments and 409,600 transitions per evaluation batch, each training batch advances an environment only 400 controls. The prior `num_resets_per_eval=1` reset every environment at that boundary. The continuation sets it to zero so episodes can span batches and reach the 1,000-control budget. Brax's autoreset wrapper restores the physical state but preserves custom information fields. I therefore clear the custom step counter and lift latch using the wrapper's previous-episode flag. A runnable check exercises the real wrapper through timeout and verifies that the next episode starts at step one with no remembered lift.
+
+### Runtime interruption and continuation
 
 Colab refused a new GPU connection because the account had reached its GPU usage limit. The fork contains the 6,963,200-transition checkpoint and `task3/resume_training.py`. Its local `--check` preflight passed: the checkpoint loads, randomized reset observations and policy actions are finite, and randomized bin inputs stay within the checked normalized range. The continuation uses the strict release predicate, 1,000-control episodes, and 3,276,800 additional transitions. It restores the actor and recalibrates the previously constant bin features with standard deviation at least 0.01 m and a 1,000-sample statistics prior; the value function and optimizer start fresh. No demonstrations are used to train PPO.
 
-From the fork root, run `python task3/resume_training.py results/task3_policy_pickplace_6963200`. The script refuses full training on CPU. A corresponding guarded continuation cell is saved in the Colab notebook. This stage has not run yet because GPU access is unavailable.
+From the fork root, run `python task3/resume_training.py results/task3_policy_pickplace_6963200` for a GPU. A corresponding guarded continuation cell is saved in the Colab notebook. A measured local CPU fallback uses `--cpu`, 32 environments, 64-sample minibatches, 25-control unrolls, and four minibatches. A 12,800-transition benchmark reached 176.9 training transitions/second, with 79.7 seconds including compilation. The full 3,276,800-transition CPU continuation is now running, with periodic 16-episode evaluations, latest/best checkpoints, and final rollout rendering. Its initial randomized evaluation reported 1/16 successes under the lift-before-place requirement. Final independent verification will use 128 episodes. Its estimated duration is 5–6 hours; this is an estimate, not a completed result.
 
 ## 4. Evidence and remaining work
 
@@ -118,7 +124,7 @@ Delivered evidence is in the fork's [results folder](https://github.com/Trollero
 - BC demonstrations: `pick_place_dataset.pkl`; trained checkpoint: `best_policy.pth`; metrics: `results.json`; example: `task2_bc_rollout.mp4`.
 - MJX expert physics video: `task3_expert_physics_rollout.mp4`.
 - Rare learned-policy placement: `task3_policy_seed84.mp4`; corresponding checkpoint: `task3_policy_pickplace_5324800`.
-- Matched trained/random evaluation: `task3_strict_evaluation.json` and `task3_strict_evaluation_random.json`.
+- Matched trained/random evaluation: `task3_strict_evaluation.json` and `task3_strict_evaluation_random.json`; lift-before-release recheck: `task3_lift_then_release_recheck.json`.
 - Preserved continuation checkpoint: `task3_policy_pickplace_6963200`.
 
-The requested work is **not complete yet**. A rare released placement and a small observed improvement over random initialization are recorded. Continued training must finish and the policy needs evaluation with randomized resets and the strict placement condition. Colab's GPU usage limit currently prevents the training continuation. This report records measured results and debugging experience without treating higher reward as proof of reliable placement.
+The requested work is **not complete yet**. A rare released placement and a small observed improvement over random initialization are recorded. The CPU continuation must finish and its policy needs independent evaluation with randomized resets and the lift-before-place requirement. Colab's GPU usage limit prevents GPU continuation; the CPU fallback is running. This report records measured results and debugging experience without treating higher reward as proof of reliable placement.

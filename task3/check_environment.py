@@ -42,6 +42,16 @@ assert not bool(env.check_success(pose(0.030, SimpleNamespace(link_idx=links, di
 assert not bool(env.check_success(pose(0.030, finger_width=0.02)))
 assert not bool(env.check_success(pose(0.030, speed=0.10)))
 assert not bool(env.check_success(pose(0.030, dx=0.03)))
+# Placement bonus requires a preceding grasped lift, not a lucky collision.
+original_step = env.pipeline_step
+env.pipeline_step = lambda previous, ctrl: pose(0.030)
+assert not bool(env.step(a, jax.numpy.zeros(8)).info['success'])
+env.pipeline_step = lambda previous, ctrl: pose(0.075, held, finger_width=0.02)
+lifted = env.step(a, jax.numpy.zeros(8))
+assert bool(lifted.info['has_lifted']) and not bool(lifted.info['success'])
+env.pipeline_step = lambda previous, ctrl: pose(0.030)
+assert bool(env.step(lifted, jax.numpy.zeros(8)).info['success'])
+env.pipeline_step = original_step
 # Reward priorities: hover stays small; lift requires grasp; placement dominates.
 info = {**a.info, 'cube_init_z': p.x.pos[env.cube_body_id, 2] - 0.15}
 action = jax.numpy.zeros(env.action_size)
@@ -50,5 +60,20 @@ pickup, _ = env._compute_reward(p, {**info, 'is_grasped': jax.numpy.array(True)}
 placement, _ = env._compute_reward(p, {**info, 'success': jax.numpy.array(True)}, action)
 assert 0 < float(hover) <= 0.1
 assert 5.5 <= float(pickup - hover) <= 7.5
-assert np.isclose(float(placement - hover), 500.0)
-print('PASS: seeded resets, stepping, bin persistence, released placement and reward priorities')
+assert np.isclose(float(placement - hover), 5000.0)
+# Exercise the real Brax autoreset path: custom counters/history must reset too.
+from brax.envs.wrappers.training import AutoResetWrapper, EpisodeWrapper
+env.max_steps = 2
+wrapped = AutoResetWrapper(EpisodeWrapper(env, episode_length=2, action_repeat=1))
+w = jax.jit(wrapped.reset)(jax.random.PRNGKey(0))
+w = w.replace(info={**w.info, 'has_lifted': jax.numpy.array(True)})
+wrapped_step = jax.jit(wrapped.step)
+home_ctrl = jax.numpy.concatenate([env.init_q[:7], jax.numpy.array([255.0])])
+home_action = 2 * (home_ctrl - env.ctrl_range[:, 0]) / (env.ctrl_range[:, 1] - env.ctrl_range[:, 0]) - 1
+w = wrapped_step(wrapped_step(w, home_action), home_action)
+assert bool(w.done)
+w = wrapped_step(w, home_action)
+assert not bool(w.done) and int(w.info['step']) == 1
+assert not bool(w.info['has_lifted'])
+assert config.ppo_agent.num_resets_per_eval == 0
+print('PASS: seeded resets, stepping, bin persistence, grasp-lift-release sequence, reward priorities and autoreset')
