@@ -21,8 +21,8 @@ dependencies:
       - jax==0.4.35
       - jaxlib==0.4.35
       # Brax runs on CPU too (slower but fine for dev)
-      - brax==0.12.1
+      - brax==0.12.4
       # Optional tools
       - wandb==0.19.7
-      # If you actually need MJX; otherwise omit this line
-    #   - "mujoco-mjx==3.3.*"
+      # Required by Task 3 MJX simulation
+      - mujoco-mjx==3.3.4

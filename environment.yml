@@ -16,7 +16,7 @@ dependencies:
       - mediapy==1.2.4
       - jax==0.4.35
       - jaxlib==0.4.35
-      - brax==0.12.1
+      - brax==0.12.4
       - wandb==0.19.7
       # optional; include only if you actually use MJX:
-      - "mujoco-mjx==3.3.*"
+      - "mujoco-mjx==3.3.4"
