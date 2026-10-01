@@ -1,0 +1,21 @@
+{
+  "planner_attempts": 50,
+  "successful_demonstrations": 42,
+  "samples": 11006,
+  "collection_seconds": 13.522090435028076,
+  "training_evaluations": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "training_seconds": 14.660541772842407,
+  "final_policy_success": 0.0
+}

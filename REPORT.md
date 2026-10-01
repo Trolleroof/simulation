@@ -2,7 +2,7 @@
 
 **Date:** October 1, 2026
 **Repository:** `Trolleroof/simulation`, branch `ml_onboarding`
-**Status:** Tasks 1 and 2 have measured results. Task 3 remains incomplete pending the full PPO run, a matched random-policy comparison, and randomized-reset evaluation.
+**Status:** Tasks 1 and 2 have measured results. Task 3 has a rare learned placement and a matched random-policy comparison; the requested continued training and randomized-reset validation remain incomplete.
 
 ## 1. Scene construction
 
@@ -100,16 +100,25 @@ Reducing MJX contact slots from 668 to 128 looked safe in fixed-pose comparisons
 
 ### Independent checkpoint evaluation
 
-The strict evaluation of the 5,324,800-transition checkpoint found 1/128 released placements over 1,000 controls with fixed training resets. Seed 84 put the cube in the bin, with open fingers and no contact, at control 344. Its cube rose 0.073 m overall but did not reach 0.05 m while simultaneously reporting bilateral grasp. Native forward contact reconstruction of the recorded poses showed grasped rise up to 0.039 m. The recorded motion briefly lifts and drops the cube into the bin; it is rough and unreliable. Five other episodes achieved grasped rise above 0.05 m without placement. A matched 128-episode random-policy comparison is running.
+The strict evaluation of the 5,324,800-transition checkpoint found 1/128 released placements over 1,000 controls with fixed training resets. Seed 84 put the cube in the bin, with open fingers and no contact, at control 344. Its cube rose 0.073 m overall but did not reach 0.05 m while simultaneously reporting bilateral grasp. Native forward contact reconstruction of the recorded poses showed grasped rise up to 0.039 m. The recorded motion briefly lifts and drops the cube into the bin; it is rough and unreliable. Five other episodes achieved grasped rise above 0.05 m without placement.
+
+A matched 128-episode comparison using a randomly initialized Gaussian policy, reset seeds 0–127, the same fixed scene, 1,000-control limit, and strict release check produced 0/128 placements. The trained checkpoint's observed placement rate is 0.78125%, versus 0% for that random policy. One successful event does not establish a reliable or statistically robust improvement.
+
+### Runtime interruption and prepared continuation
+
+Colab refused a new GPU connection because the account had reached its GPU usage limit. The fork contains the 6,963,200-transition checkpoint and `task3/resume_training.py`. Its local `--check` preflight passed: the checkpoint loads, randomized reset observations and policy actions are finite, and randomized bin inputs stay within the checked normalized range. The continuation uses the strict release predicate, 1,000-control episodes, and 3,276,800 additional transitions. It restores the actor and recalibrates the previously constant bin features with standard deviation at least 0.01 m and a 1,000-sample statistics prior; the value function and optimizer start fresh. No demonstrations are used to train PPO.
+
+From the fork root, run `python task3/resume_training.py results/task3_policy_pickplace_6963200`. The script refuses full training on CPU. A corresponding guarded continuation cell is saved in the Colab notebook. This stage has not run yet because GPU access is unavailable.
 
 ## 4. Evidence and remaining work
 
-- Expert video: `pick_place_rollout.mp4` (seed 42, 264 steps).
-- Rare learned-policy placement video: `task3_policy_seed84.mp4`; checkpoint: `task3_policy_pickplace_5324800`; strict results: `task3_strict_evaluation.json`.
-- BC dataset, selected checkpoint, metrics, and recorded rollouts: `../work/task2_results/`.
-- BC example: `task2_bc_rollout.mp4`.
-- MJX expert physics video: `task3_expert_physics_rollout.mp4`; physics checks: `task3_expert_physics_0.002.json` and `task3_expert_physics_0.001.json`.
-- Intermediate PPO video and metrics: `task3_intermediate_rollout.mp4`, `task3_intermediate_result.json`, `task3_intermediate_comparison.json`.
-- Live-run metrics: `../work/simulation/task3/task3_pickplace_metrics.json`.
+Delivered evidence is in the fork's [results folder](https://github.com/Trolleroof/simulation/tree/ml_onboarding/results):
 
-Task 3's definition of done is **not met yet**. A rare released placement is recorded, but the full run must finish and its success must be compared with random initialization. The final policy also needs evaluation with randomized resets and the stricter placement condition. This report records measured failures and debugging experience without treating higher reward as proof of successful placement.
+- Expert video: `pick_place_rollout.mp4` (seed 42, 264 steps).
+- BC demonstrations: `pick_place_dataset.pkl`; trained checkpoint: `best_policy.pth`; metrics: `results.json`; example: `task2_bc_rollout.mp4`.
+- MJX expert physics video: `task3_expert_physics_rollout.mp4`.
+- Rare learned-policy placement: `task3_policy_seed84.mp4`; corresponding checkpoint: `task3_policy_pickplace_5324800`.
+- Matched trained/random evaluation: `task3_strict_evaluation.json` and `task3_strict_evaluation_random.json`.
+- Preserved continuation checkpoint: `task3_policy_pickplace_6963200`.
+
+The requested work is **not complete yet**. A rare released placement and a small observed improvement over random initialization are recorded. Continued training must finish and the policy needs evaluation with randomized resets and the strict placement condition. Colab's GPU usage limit currently prevents the training continuation. This report records measured results and debugging experience without treating higher reward as proof of reliable placement.
