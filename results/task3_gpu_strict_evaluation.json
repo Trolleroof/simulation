@@ -1,0 +1,1032 @@
+{
+  "checkpoint": "gpu_best_randomized_calibrated_lift_then_release",
+  "environment": "randomized reset, bin std floor .01, grasped lift >.025m before open-gripper release, normalized observations",
+  "max_steps": 1000,
+  "episodes": [
+    {
+      "seed": 0,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.010922014713287354,
+      "grasp_steps": 53,
+      "first_release_step": -1
+    },
+    {
+      "seed": 1,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04541569948196411,
+      "grasp_steps": 63,
+      "first_release_step": -1
+    },
+    {
+      "seed": 2,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.014035344123840332,
+      "grasp_steps": 19,
+      "first_release_step": -1
+    },
+    {
+      "seed": 3,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01256704330444336,
+      "grasp_steps": 8,
+      "first_release_step": -1
+    },
+    {
+      "seed": 4,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020553410053253174,
+      "grasp_steps": 57,
+      "first_release_step": -1
+    },
+    {
+      "seed": 5,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.022758781909942627,
+      "grasp_steps": 32,
+      "first_release_step": -1
+    },
+    {
+      "seed": 6,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.014625310897827148,
+      "grasp_steps": 27,
+      "first_release_step": -1
+    },
+    {
+      "seed": 7,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.024329185485839844,
+      "grasp_steps": 10,
+      "first_release_step": -1
+    },
+    {
+      "seed": 8,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03826969861984253,
+      "grasp_steps": 30,
+      "first_release_step": -1
+    },
+    {
+      "seed": 9,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03650212287902832,
+      "grasp_steps": 17,
+      "first_release_step": -1
+    },
+    {
+      "seed": 10,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.021416783332824707,
+      "grasp_steps": 60,
+      "first_release_step": -1
+    },
+    {
+      "seed": 11,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03984755277633667,
+      "grasp_steps": 10,
+      "first_release_step": -1
+    },
+    {
+      "seed": 12,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.023783624172210693,
+      "grasp_steps": 20,
+      "first_release_step": -1
+    },
+    {
+      "seed": 13,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020880818367004395,
+      "grasp_steps": 5,
+      "first_release_step": -1
+    },
+    {
+      "seed": 14,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01982361078262329,
+      "grasp_steps": 8,
+      "first_release_step": -1
+    },
+    {
+      "seed": 15,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.006984114646911621,
+      "grasp_steps": 21,
+      "first_release_step": -1
+    },
+    {
+      "seed": 16,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.025777339935302734,
+      "grasp_steps": 1,
+      "first_release_step": -1
+    },
+    {
+      "seed": 17,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013595521450042725,
+      "grasp_steps": 49,
+      "first_release_step": -1
+    },
+    {
+      "seed": 18,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.006940484046936035,
+      "grasp_steps": 11,
+      "first_release_step": -1
+    },
+    {
+      "seed": 19,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01558828353881836,
+      "grasp_steps": 7,
+      "first_release_step": -1
+    },
+    {
+      "seed": 20,
+      "released_placement": false,
+      "picked_at_least_5cm": true,
+      "max_cube_rise_m": 0.10848122835159302,
+      "grasp_steps": 58,
+      "first_release_step": -1
+    },
+    {
+      "seed": 21,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01949441432952881,
+      "grasp_steps": 15,
+      "first_release_step": -1
+    },
+    {
+      "seed": 22,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.015228807926177979,
+      "grasp_steps": 4,
+      "first_release_step": -1
+    },
+    {
+      "seed": 23,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02675306797027588,
+      "grasp_steps": 31,
+      "first_release_step": -1
+    },
+    {
+      "seed": 24,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03048795461654663,
+      "grasp_steps": 49,
+      "first_release_step": -1
+    },
+    {
+      "seed": 25,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.009170711040496826,
+      "grasp_steps": 24,
+      "first_release_step": -1
+    },
+    {
+      "seed": 26,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.015679001808166504,
+      "grasp_steps": 28,
+      "first_release_step": -1
+    },
+    {
+      "seed": 27,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01441890001296997,
+      "grasp_steps": 56,
+      "first_release_step": -1
+    },
+    {
+      "seed": 28,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01795119047164917,
+      "grasp_steps": 13,
+      "first_release_step": -1
+    },
+    {
+      "seed": 29,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0200769305229187,
+      "grasp_steps": 18,
+      "first_release_step": -1
+    },
+    {
+      "seed": 30,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.006334066390991211,
+      "grasp_steps": 15,
+      "first_release_step": -1
+    },
+    {
+      "seed": 31,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04040271043777466,
+      "grasp_steps": 30,
+      "first_release_step": -1
+    },
+    {
+      "seed": 32,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.035106778144836426,
+      "grasp_steps": 15,
+      "first_release_step": -1
+    },
+    {
+      "seed": 33,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.025943338871002197,
+      "grasp_steps": 15,
+      "first_release_step": -1
+    },
+    {
+      "seed": 34,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.018954813480377197,
+      "grasp_steps": 75,
+      "first_release_step": -1
+    },
+    {
+      "seed": 35,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.1031184196472168,
+      "grasp_steps": 19,
+      "first_release_step": -1
+    },
+    {
+      "seed": 36,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0367358922958374,
+      "grasp_steps": 26,
+      "first_release_step": -1
+    },
+    {
+      "seed": 37,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013330459594726562,
+      "grasp_steps": 38,
+      "first_release_step": -1
+    },
+    {
+      "seed": 38,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01945716142654419,
+      "grasp_steps": 34,
+      "first_release_step": -1
+    },
+    {
+      "seed": 39,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0207669734954834,
+      "grasp_steps": 45,
+      "first_release_step": -1
+    },
+    {
+      "seed": 40,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.00951164960861206,
+      "grasp_steps": 18,
+      "first_release_step": -1
+    },
+    {
+      "seed": 41,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020204544067382812,
+      "grasp_steps": 13,
+      "first_release_step": -1
+    },
+    {
+      "seed": 42,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.009078145027160645,
+      "grasp_steps": 31,
+      "first_release_step": -1
+    },
+    {
+      "seed": 43,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03228384256362915,
+      "grasp_steps": 16,
+      "first_release_step": -1
+    },
+    {
+      "seed": 44,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.029083609580993652,
+      "grasp_steps": 50,
+      "first_release_step": -1
+    },
+    {
+      "seed": 45,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03492993116378784,
+      "grasp_steps": 24,
+      "first_release_step": -1
+    },
+    {
+      "seed": 46,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04630047082901001,
+      "grasp_steps": 76,
+      "first_release_step": -1
+    },
+    {
+      "seed": 47,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02301269769668579,
+      "grasp_steps": 6,
+      "first_release_step": -1
+    },
+    {
+      "seed": 48,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02755790948867798,
+      "grasp_steps": 19,
+      "first_release_step": -1
+    },
+    {
+      "seed": 49,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.031146347522735596,
+      "grasp_steps": 23,
+      "first_release_step": -1
+    },
+    {
+      "seed": 50,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.019097864627838135,
+      "grasp_steps": 32,
+      "first_release_step": -1
+    },
+    {
+      "seed": 51,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.012900710105895996,
+      "grasp_steps": 11,
+      "first_release_step": -1
+    },
+    {
+      "seed": 52,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.029329955577850342,
+      "grasp_steps": 36,
+      "first_release_step": -1
+    },
+    {
+      "seed": 53,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0251462459564209,
+      "grasp_steps": 37,
+      "first_release_step": -1
+    },
+    {
+      "seed": 54,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.034628331661224365,
+      "grasp_steps": 18,
+      "first_release_step": -1
+    },
+    {
+      "seed": 55,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.10565382242202759,
+      "grasp_steps": 50,
+      "first_release_step": -1
+    },
+    {
+      "seed": 56,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.036182522773742676,
+      "grasp_steps": 46,
+      "first_release_step": -1
+    },
+    {
+      "seed": 57,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04893225431442261,
+      "grasp_steps": 30,
+      "first_release_step": -1
+    },
+    {
+      "seed": 58,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.007751345634460449,
+      "grasp_steps": 26,
+      "first_release_step": -1
+    },
+    {
+      "seed": 59,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.017551839351654053,
+      "grasp_steps": 18,
+      "first_release_step": -1
+    },
+    {
+      "seed": 60,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013837039470672607,
+      "grasp_steps": 10,
+      "first_release_step": -1
+    },
+    {
+      "seed": 61,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.014503002166748047,
+      "grasp_steps": 38,
+      "first_release_step": -1
+    },
+    {
+      "seed": 62,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03365403413772583,
+      "grasp_steps": 7,
+      "first_release_step": -1
+    },
+    {
+      "seed": 63,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04624813795089722,
+      "grasp_steps": 30,
+      "first_release_step": -1
+    },
+    {
+      "seed": 64,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.017277300357818604,
+      "grasp_steps": 17,
+      "first_release_step": -1
+    },
+    {
+      "seed": 65,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02490222454071045,
+      "grasp_steps": 46,
+      "first_release_step": -1
+    },
+    {
+      "seed": 66,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013844192028045654,
+      "grasp_steps": 59,
+      "first_release_step": -1
+    },
+    {
+      "seed": 67,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.026904821395874023,
+      "grasp_steps": 19,
+      "first_release_step": -1
+    },
+    {
+      "seed": 68,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.021170198917388916,
+      "grasp_steps": 10,
+      "first_release_step": -1
+    },
+    {
+      "seed": 69,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.023244202136993408,
+      "grasp_steps": 7,
+      "first_release_step": -1
+    },
+    {
+      "seed": 70,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.05097764730453491,
+      "grasp_steps": 14,
+      "first_release_step": -1
+    },
+    {
+      "seed": 71,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013879537582397461,
+      "grasp_steps": 0,
+      "first_release_step": -1
+    },
+    {
+      "seed": 72,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020579099655151367,
+      "grasp_steps": 47,
+      "first_release_step": -1
+    },
+    {
+      "seed": 73,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.00998234748840332,
+      "grasp_steps": 23,
+      "first_release_step": -1
+    },
+    {
+      "seed": 74,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.018726348876953125,
+      "grasp_steps": 27,
+      "first_release_step": -1
+    },
+    {
+      "seed": 75,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03722333908081055,
+      "grasp_steps": 29,
+      "first_release_step": -1
+    },
+    {
+      "seed": 76,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03574579954147339,
+      "grasp_steps": 14,
+      "first_release_step": -1
+    },
+    {
+      "seed": 77,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01987481117248535,
+      "grasp_steps": 31,
+      "first_release_step": -1
+    },
+    {
+      "seed": 78,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.017559289932250977,
+      "grasp_steps": 27,
+      "first_release_step": -1
+    },
+    {
+      "seed": 79,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.024438202381134033,
+      "grasp_steps": 8,
+      "first_release_step": -1
+    },
+    {
+      "seed": 80,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04863697290420532,
+      "grasp_steps": 22,
+      "first_release_step": -1
+    },
+    {
+      "seed": 81,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02451092004776001,
+      "grasp_steps": 66,
+      "first_release_step": -1
+    },
+    {
+      "seed": 82,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02751290798187256,
+      "grasp_steps": 17,
+      "first_release_step": -1
+    },
+    {
+      "seed": 83,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04098135232925415,
+      "grasp_steps": 26,
+      "first_release_step": -1
+    },
+    {
+      "seed": 84,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01743340492248535,
+      "grasp_steps": 74,
+      "first_release_step": -1
+    },
+    {
+      "seed": 85,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.07066577672958374,
+      "grasp_steps": 66,
+      "first_release_step": -1
+    },
+    {
+      "seed": 86,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.032334983348846436,
+      "grasp_steps": 25,
+      "first_release_step": -1
+    },
+    {
+      "seed": 87,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.011675000190734863,
+      "grasp_steps": 19,
+      "first_release_step": -1
+    },
+    {
+      "seed": 88,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.019540846347808838,
+      "grasp_steps": 17,
+      "first_release_step": -1
+    },
+    {
+      "seed": 89,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.028604447841644287,
+      "grasp_steps": 5,
+      "first_release_step": -1
+    },
+    {
+      "seed": 90,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013014256954193115,
+      "grasp_steps": 29,
+      "first_release_step": -1
+    },
+    {
+      "seed": 91,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0592501163482666,
+      "grasp_steps": 16,
+      "first_release_step": -1
+    },
+    {
+      "seed": 92,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.005832254886627197,
+      "grasp_steps": 3,
+      "first_release_step": -1
+    },
+    {
+      "seed": 93,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0128670334815979,
+      "grasp_steps": 9,
+      "first_release_step": -1
+    },
+    {
+      "seed": 94,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.025801360607147217,
+      "grasp_steps": 63,
+      "first_release_step": -1
+    },
+    {
+      "seed": 95,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.044330894947052,
+      "grasp_steps": 18,
+      "first_release_step": -1
+    },
+    {
+      "seed": 96,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03305250406265259,
+      "grasp_steps": 83,
+      "first_release_step": -1
+    },
+    {
+      "seed": 97,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.012999117374420166,
+      "grasp_steps": 22,
+      "first_release_step": -1
+    },
+    {
+      "seed": 98,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01772749423980713,
+      "grasp_steps": 13,
+      "first_release_step": -1
+    },
+    {
+      "seed": 99,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0136832594871521,
+      "grasp_steps": 27,
+      "first_release_step": -1
+    },
+    {
+      "seed": 100,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.024874508380889893,
+      "grasp_steps": 9,
+      "first_release_step": -1
+    },
+    {
+      "seed": 101,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.04072767496109009,
+      "grasp_steps": 23,
+      "first_release_step": -1
+    },
+    {
+      "seed": 102,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03529012203216553,
+      "grasp_steps": 12,
+      "first_release_step": -1
+    },
+    {
+      "seed": 103,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.028340399265289307,
+      "grasp_steps": 32,
+      "first_release_step": -1
+    },
+    {
+      "seed": 104,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.009280562400817871,
+      "grasp_steps": 55,
+      "first_release_step": -1
+    },
+    {
+      "seed": 105,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.012508511543273926,
+      "grasp_steps": 15,
+      "first_release_step": -1
+    },
+    {
+      "seed": 106,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.042595744132995605,
+      "grasp_steps": 29,
+      "first_release_step": -1
+    },
+    {
+      "seed": 107,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.020699679851531982,
+      "grasp_steps": 58,
+      "first_release_step": -1
+    },
+    {
+      "seed": 108,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03297257423400879,
+      "grasp_steps": 10,
+      "first_release_step": -1
+    },
+    {
+      "seed": 109,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03543025255203247,
+      "grasp_steps": 32,
+      "first_release_step": -1
+    },
+    {
+      "seed": 110,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.013532400131225586,
+      "grasp_steps": 6,
+      "first_release_step": -1
+    },
+    {
+      "seed": 111,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0032526254653930664,
+      "grasp_steps": 23,
+      "first_release_step": -1
+    },
+    {
+      "seed": 112,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.017141282558441162,
+      "grasp_steps": 42,
+      "first_release_step": -1
+    },
+    {
+      "seed": 113,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.02532780170440674,
+      "grasp_steps": 43,
+      "first_release_step": -1
+    },
+    {
+      "seed": 114,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.024897396564483643,
+      "grasp_steps": 12,
+      "first_release_step": -1
+    },
+    {
+      "seed": 115,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.011076092720031738,
+      "grasp_steps": 25,
+      "first_release_step": -1
+    },
+    {
+      "seed": 116,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.0020865201950073242,
+      "grasp_steps": 7,
+      "first_release_step": -1
+    },
+    {
+      "seed": 117,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.057569026947021484,
+      "grasp_steps": 34,
+      "first_release_step": -1
+    },
+    {
+      "seed": 118,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.027378559112548828,
+      "grasp_steps": 1,
+      "first_release_step": -1
+    },
+    {
+      "seed": 119,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.023606956005096436,
+      "grasp_steps": 42,
+      "first_release_step": -1
+    },
+    {
+      "seed": 120,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.026981115341186523,
+      "grasp_steps": 55,
+      "first_release_step": -1
+    },
+    {
+      "seed": 121,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.014905095100402832,
+      "grasp_steps": 0,
+      "first_release_step": -1
+    },
+    {
+      "seed": 122,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03563481569290161,
+      "grasp_steps": 39,
+      "first_release_step": -1
+    },
+    {
+      "seed": 123,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.011422395706176758,
+      "grasp_steps": 5,
+      "first_release_step": -1
+    },
+    {
+      "seed": 124,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.01205301284790039,
+      "grasp_steps": 36,
+      "first_release_step": -1
+    },
+    {
+      "seed": 125,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.03858214616775513,
+      "grasp_steps": 38,
+      "first_release_step": -1
+    },
+    {
+      "seed": 126,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.00956714153289795,
+      "grasp_steps": 60,
+      "first_release_step": -1
+    },
+    {
+      "seed": 127,
+      "released_placement": false,
+      "picked_at_least_5cm": false,
+      "max_cube_rise_m": 0.018402516841888428,
+      "grasp_steps": 9,
+      "first_release_step": -1
+    }
+  ],
+  "elapsed_seconds": 102.38145351409912
+}

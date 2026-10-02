@@ -1,8 +1,8 @@
 # Simulation onboarding: results and experience
 
-**Date:** October 1, 2026
+**Date:** October 2, 2026
 **Repository:** `Trolleroof/simulation`, branch `ml_onboarding`
-**Status:** Tasks 1 and 2 have measured results. Task 3 has a rare learned placement and a matched random-policy comparison; the requested continued training and randomized-reset validation remain incomplete.
+**Status:** Tasks 1 and 2 have measured results. Task 3 training and randomized-reset validation are complete; PPO did not learn reliable pick-and-place.
 
 ## 1. Scene construction
 
@@ -90,7 +90,7 @@ The interrupted run used fixed reset positions and the earlier broader success p
 
 To check physical feasibility without using demonstrations for PPO training, I replayed one successful native MuJoCo expert trajectory through MJX, matching its 20 ms control targets with two MJX controls per target. I then held the final open-gripper command to allow release and settling. With the current 2 ms physics step and 10 ms control interval, MJX lifted the cube by 0.126 m, recorded 273 bilateral-contact controls, and passed the stricter released-placement check after 574 total controls (5.74 seconds). With a 1 ms physics step at the same control rate, it also passed after 547 controls. These are two checks of one reference trajectory, not a reliability estimate.
 
-This shows that pickup and placement are physically possible under MJX. It also shows that the current 500-control episode cannot complete this particular reference sequence. The saved notebook now uses 1,000 controls per episode and its rollout loops use the same configured limit. Local environment checks passed again after the change. The live PPO run still uses 500 controls; this episode-budget revision must be used in the next training stage. The reference actions are only a physics diagnostic and were not used to train PPO weights.
+This shows that pickup and placement are physically possible under MJX. It also shows that the former 500-control episode could not complete this particular reference sequence. The saved notebook and completed continuation use 1,000 controls per episode. Local environment checks passed after the change. The reference actions are only a physics diagnostic and were not used to train PPO weights.
 
 ### Rejected shortcuts
 
@@ -114,7 +114,9 @@ With 1,024 environments and 409,600 transitions per evaluation batch, each train
 
 Colab refused a new GPU connection because the account had reached its GPU usage limit. The fork contains the 6,963,200-transition checkpoint and `task3/resume_training.py`. Its local `--check` preflight passed: the checkpoint loads, randomized reset observations and policy actions are finite, and randomized bin inputs stay within the checked normalized range. The continuation uses the strict release predicate, 1,000-control episodes, and 3,276,800 additional transitions. It restores the actor and recalibrates the previously constant bin features with standard deviation at least 0.01 m and a 1,000-sample statistics prior; the value function and optimizer start fresh. No demonstrations are used to train PPO.
 
-From the fork root, run `python task3/resume_training.py results/task3_policy_pickplace_6963200` for a GPU. A corresponding guarded continuation cell is saved in the Colab notebook. A measured local CPU fallback uses `--cpu`, 32 environments, 64-sample minibatches, 25-control unrolls, and four minibatches. A 12,800-transition benchmark reached 176.9 training transitions/second, with 79.7 seconds including compilation. The full 3,276,800-transition CPU continuation is now running, with periodic 16-episode evaluations, latest/best checkpoints, and final rollout rendering. Its initial randomized evaluation reported 1/16 successes under the lift-before-place requirement. Final independent verification will use 128 episodes. Its estimated duration is 5–6 hours; this is an estimate, not a completed result.
+The 4090 continuation completed all 3,276,800 additional transitions in 524.6 seconds, after the preserved 409,600-step CPU continuation. Its eight periodic evaluations each used 128 episodes; the best reported success was 2/128 (1.5625%) at 1,638,400 new transitions, and the final evaluation reported 1/128 (0.78125%). The best checkpoint and final checkpoint were saved. An independent evaluation of the saved best checkpoint on 128 randomized resets, with the lift-before-release gate and 1,000-control limit, found **0/128 released placements** and **1/128 grasped lifts of at least 5 cm**. The greatest cube rise in any episode was 0.1085 m, which does not by itself imply a controlled pickup. These counts are a different evaluation sample from the training dashboard; the dashboard's rare successes did not reproduce here.
+
+The training script then failed during final video rendering because `mediapy` 1.2.4 could not import with NumPy 2.5.3 (`TypeError: typealias() takes exactly 2 positional arguments (3 given)`). This happened after training and checkpoint saves. No video from the new checkpoint was produced. An earlier learned-policy video, `task3_policy_seed84.mp4`, records the rare fixed-reset placement from the previous checkpoint and must not be presented as the new policy's result. The remote best and final checkpoints, metrics, and independent evaluation were copied to `results/`.
 
 ## 4. Evidence and remaining work
 
@@ -126,5 +128,6 @@ Delivered evidence is in the fork's [results folder](https://github.com/Trollero
 - Rare learned-policy placement: `task3_policy_seed84.mp4`; corresponding checkpoint: `task3_policy_pickplace_5324800`.
 - Matched trained/random evaluation: `task3_strict_evaluation.json` and `task3_strict_evaluation_random.json`; lift-before-release recheck: `task3_lift_then_release_recheck.json`.
 - Preserved continuation checkpoint: `task3_policy_pickplace_6963200`.
+- Completed 4090 continuation: `task3_policy_gpu_best`, `task3_policy_gpu_final`, `task3_gpu_metrics.json`, and `task3_gpu_strict_evaluation.json`.
 
-The requested work is **not complete yet**. A rare released placement and a small observed improvement over random initialization are recorded. The CPU continuation must finish and its policy needs independent evaluation with randomized resets and the lift-before-place requirement. Colab's GPU usage limit prevents GPU continuation; the CPU fallback is running. This report records measured results and debugging experience without treating higher reward as proof of reliable placement.
+The requested training and validation run is complete, but the learned policy does **not** reliably solve Task 3. The strongest independent result for the new checkpoint is 0/128 released placements on randomized resets. The earlier fixed-reset seed-84 placement is a rare observed event, not evidence of generalization. The current evidence supports the scene, data collection, physics feasibility, and training workflow; it does not support a successful PPO pick-and-place claim.
